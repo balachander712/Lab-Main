@@ -15,9 +15,12 @@ int main()
     {
         if(str[i]==ch)
         {
-
-            str[i]=str[i+1];
-            i--;
+            int j;
+            for(j=i;j<=strlen(str);j++)
+            {
+                str[i]=str[i+1];
+                i--;
+            }
         }
         i++;
 
