@@ -1,0 +1,46 @@
+<HTML>
+    <head>
+        <script>
+        function calculateSimpleInterest()
+        {
+            var p=document.getElementById("p").value;
+            var n=document.getElementById("n").value;
+            var r=document.getElementById("r").value;
+
+            var result=document.getElementById("result");
+
+            alert("The interest is " + (p*n*r/100));
+        }
+        function calculateCompoundInerest()
+        {
+            var p=document.getElementById("p").value;
+            var r=document.getElementById("r").value;
+            var n=document.getElementById("n").value;
+            var t=document.getElementById("t").value;
+
+            var result=document.getElementById("result");  
+ 
+            alert("The total amount is " + P*Math.pow(1+(r/n),n*t));
+            
+        }
+        </script>
+        <body>
+            <h1>Simple Interest calaculator</h1>
+
+            Amount : <input id="p"><br/>
+            Rate :  <input id="r"><br/>
+            No of years : <input id="n"><br/>
+
+            <button onclick="calculateSimpleInterest()">Calculate</button>
+
+
+            <h1> Compound intrest Calculation </h1>
+            Amount:: <input id="p"><br>
+            Rate:: <input id="r"><br>
+            No:of Years:: <input id="n"><br>
+            Compounding times from Year<input id="t"><br>
+
+            <button onclick="calculateCompoundInterest()">Calculate</button>
+        </body>
+    </head>
+</HTML>
