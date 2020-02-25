@@ -1,0 +1,30 @@
+<html lang="en">
+<head></head>
+<body>
+    <fieldset>
+        <legend>Random Things</legend>
+        <form>
+            <ol type="a">
+                <li><label>Enter your name:</label></li>
+                <input type="text" autofocus>
+                <li><label>Enter your email address:</label></li>
+                <input type="email" name="email" autocomplete="on">
+                <li><label>Enter your landline number:</label></li>
+                <input type="tel" name="phone" pattern="[0-9]{4}-[0-9]{7}">
+                <li><label>Enter your age:</label></li>
+                <input type="number" name="age" min="1" max="100" required>
+                <li><label>Volume Settings</label>
+                    <ul>
+                        <li><Label>Audio Volume</Label></li>
+                        <input type="range" min="1" max="10">
+                        <li><label>Media Volume</label></li>
+                        <input type="range" min="1" max='10'>
+                    </ul>
+                </li>
+                <li><label>Enter your favourite color:</label></li>
+                <input type="color" name="favcolor">
+                <label style="font-size: small;">Fill all the necessary details and submit</label>
+                <input type="submit">
+        </form>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<html>
+    <head></head>
+    <title>Distance Calculator</title>
+    <script>
+        function calculateDistance()
+        {
+            var x1=prompt("Enter the value of x1: ");
+            var x2=prompt("Enter the value of x2: ");
+            var y1=prompt("Enter the value of y1: ");
+            var y2=prompt("Enter the value of y2: ");
+
+            var d1=Math.pow((x1-x2),2)+Math.pow((y1-y2),2);
+            var d2= Math.sqrt(d1);
+            var d=d2.toFixed(2);
+            alert("The distance is " + d );
+        }
+    </script>
+    <body>
+        <h1>Distance Calculator</h1>
+        <button onclick="calculateDistance()">Calculate</button>  
+    </body>
+</html>

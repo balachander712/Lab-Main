@@ -1,0 +1,44 @@
+<html>
+    <head>
+
+    </head>
+    <title>Calculator</title>
+    <script>
+        function calculate()
+        {
+            var x=prompt("Enter the value of x: ");
+            var y=prompt("Enter the value of y: ");
+
+            var sum= Number(x)+Number(y);
+            var avg=(Number(x)+Number(y))/2;
+            var prod=x*y;
+            if(x>y)
+            {
+                var small=y;
+            }
+            else
+            {
+                var small=x;
+            }
+
+            if(x>y)
+            {
+                var large=x;
+            }
+            else
+            {
+                var large=y;
+            }
+
+            alert("The sum is "+sum);
+            alert("The average is "+avg);
+            alert("The product is "+prod);
+            alert("The smallest number is "+small);
+            alert("The largest number is "+large);
+        }
+    </script>
+    <body>
+        <h1>Calculator</h1>
+        <button onclick="calculate()">calculate</button>
+    </body>
+</html>
