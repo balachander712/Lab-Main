@@ -30,7 +30,7 @@ void Publication:: getdata()
 
 void Publication::putdata()
 {
-    cout<<"\nThe item is "<<str<<"and the price is "<<price;
+    cout<<"\nThe item is "<<str<<" and the price is "<<price;
 }
 
 class Book:public Publication
