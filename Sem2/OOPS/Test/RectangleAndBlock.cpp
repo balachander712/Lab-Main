@@ -46,7 +46,7 @@ Block::Block()
 }
 
 void Block::getHeight()
-{
+{   
     cout<<"\nEnter the height ";
     cin>>height;
 }
