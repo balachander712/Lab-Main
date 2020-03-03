@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id = "result"></p>
+    <script>
+        function circleArea(radius)
+        {
+            if(radius < 0)
+                return -1;
+            else
+                return Math.PI*radius**2;
+        }
+        var radius = parseInt(prompt("Enter the radius"));
+        var result = circleArea(radius);
+        if(result == -1)
+            alert("Invalid radius");
+        else
+            document.getElementById("result").innerHTML = "The radius of the circle is " + result;
+    </script>
+</body>
+</html> 

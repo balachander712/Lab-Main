@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+   <script>
+       function isEven(num)
+       {
+            if(num % 2  == 0)
+                return true;
+            else
+                return false;
+       }
+       while(1)
+        {
+            var num = parseInt(prompt("Enter the number"));
+            if(num < 0)
+            {   
+                alert("End of input");
+                break;
+            }
+            else
+            {
+                var result = isEven(num);
+                if(result)
+                    alert("The number is even");
+                else
+                    alert("The number is odd");
+            }
+        }
+   </script>
+</body>
+
+</html>
