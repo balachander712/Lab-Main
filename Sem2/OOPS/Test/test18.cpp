@@ -76,7 +76,8 @@ void CargoShip::getData()
 
 void CargoShip::printData()
 {
-    cout<<"The maximum capacity is "<<tonnage;
+    Ship::printData();
+    cout<<"\nThe maximum capacity is "<<tonnage;
 }
 
 int main()
