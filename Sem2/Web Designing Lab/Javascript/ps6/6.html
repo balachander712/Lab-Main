@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function toTitleCase(str)
+        {
+            var sub = str.split(' ');
+            for(i = 0; i < sub.length; i++)
+                sub[i] = sub[i].charAt(0).toUpperCase() + sub[i].substring(1);
+            str = sub.join(' ');
+            alert(str);
+        }
+        toTitleCase(prompt("Enter the string"));
+    </script>
+</body>
+</html>
