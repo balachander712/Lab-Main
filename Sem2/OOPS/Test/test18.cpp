@@ -56,16 +56,39 @@ void CruiseShip::printData()
     cout<<"\nThe max number of passengers is "<<pass_no;
 }
 
+class CargoShip:public Ship
+{
+    int tonnage;
+public:
+    CargoShip()
+    {
+        tonnage=0;
+    }
+    void getData();
+    void printData();
+};
 
+void CargoShip::getData()
+{
+    cout<<"\nEnter the maximum capacity in tonnes ";
+    cin>>tonnage;
+}
+
+void CargoShip::printData()
+{
+    cout<<"The maximum capacity is "<<tonnage;
+}
 
 int main()
 {
-    Ship *S;
-    CruiseShip C;
-    S=&C;
-    S->getData();
-    S->printData();
-    C.getData();
-    C.printData();
+    Ship *ship;
+    CruiseShip cruise;
+    CargoShip cargo;
+    
+    ship=&cargo;
+    ship->getData();
+    ship->printData();
+    cargo.getData();
+    cargo.printData();
     return 0;
 }
