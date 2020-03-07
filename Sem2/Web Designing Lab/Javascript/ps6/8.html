@@ -1,0 +1,29 @@
+<html>
+    <script>
+        function stringCount(str,ch)
+        {
+            var count=0;
+            for(var i=0;i<str.length;i++)
+            {
+                if(str.charAt(i)==ch)
+                    count++;
+            }
+            return count;
+        }
+        function callBack()
+        {
+            var str=document.getElementById("in1").value;
+            var ch=document.getElementById("in2").value;
+            var count=stringCount(str,ch);
+            document.getElementById("result").innerHTML="The number of occurences is "+ count;
+        
+        }
+    </script>
+    <body>
+        <p>Enter the string</p>
+        <input type="text" id="in1" onkeypress="callBack()">
+        <p>Enter the character to be searched</p>
+        <input type="text" id="in2" onkeypress="callBack()">
+        <p id="result"></p>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<html>
+    <head></head>
+    <script>
+        function calculateCharges(hours)
+        {
+            if(hours<=3)
+                return 2;
+            else
+            {
+                var result=2+0.5*(hours-3);
+                if(result<=10)
+                    return result;
+                else
+                    return 10;
+            }
+        }
+        function callBack()
+        {
+            var hours=parseInt(document.getElementById("in").value);
+            var result=calculateCharges(hours);
+            document.getElementById("result").innerHTML="The cost of parking is" + result;
+        }
+    </script>
+    <body>
+        <p>Enter the parking hours </p>
+        <input onkeypress="callBack()" type="text" id="in">
+        <p id="result"></p>
+    </body>
+</html>
