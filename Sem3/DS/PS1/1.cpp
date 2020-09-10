@@ -22,13 +22,6 @@ public:
     
     Node* getRightChild() { return this->rightChild; }
     
-    void setLeftChild(Node* node) {
-        this->leftChild = node;
-    }
-
-    void setRightChild(Node* node){
-        this->rightChild = node;
-    }
 
     void insert(int value){
         if(this->data == value)
@@ -125,6 +118,33 @@ public:
             this->rightChild->traverseInorder();
         }
     }
+
+    void traversePreOrder(){
+       
+       cout << this->data << " " ;
+       
+       if(this->leftChild != NULL){
+            this->leftChild->traversePreorder();
+        }
+
+        if(this->rightChild != NULL){
+            this->rightChild->traversePreorder();
+        } 
+    }
+
+    void traversePostOrder(){
+       
+       if(this->leftChild != NULL){
+            this->leftChild->traversePostorder();
+        }
+
+        if(this->rightChild != NULL){
+            this->rightChild->traversePostorder();
+        } 
+
+        cout << this->data << " " ;
+
+    }
 };
 
 class Tree{
@@ -166,6 +186,14 @@ public:
 
     void traverseInorder(){
         root->traverseInorder();
+    }
+
+    void traversePreorder(){
+        root->traversePreInorder();
+    }
+
+    void traversePostorder(){
+        root->traversePostorder();
     }
 };
 
