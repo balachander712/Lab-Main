@@ -34,6 +34,7 @@ public:
     Node* getLeftChild(Node*&,int);
     Node* getRightChild(Node*&,int);
     bool findElement(Node*&,int);
+    int numberOfSearches(Node*&,int);
 };
 
 void Tree:: insert(Node*& node, int value){
@@ -182,18 +183,30 @@ Node* Tree::getRightChild(Node*& node,int value){
     }
 }
 
+int Tree::numberOfSearches(Node*& node,int value){
+    if(value == node->data) 
+        return 1;
+    else if(node->leftChild == NULL && node->rightChild == NULL)   
+        return false;
+    else if(value < node->data)
+        return (1 + numberOfSearches(node->leftChild,value));
+    else 
+        return (1 + numberOfSearches(node->rightChild,value));
+}
+
 int main(){
 
     Tree tree;
-    tree.insert(tree.root,10);
-    tree.insert(tree.root,20);
-    tree.insert(tree.root,-1);
-    tree.insert(tree.root,5);
-    tree.insert(tree.root,30);
-    tree.insert(tree.root,50);
+    tree.insert(tree.root,1);
     tree.insert(tree.root,2);
-    tree.deleteNode(tree.root,30);
-    tree.deleteNode(tree.root,2);
-    tree.traverseInOrder(tree.root);
+    tree.insert(tree.root,3);
+    tree.insert(tree.root,4);
+    tree.insert(tree.root,5);
+    tree.insert(tree.root,6);
+    tree.insert(tree.root,7);
+    tree.insert(tree.root,8);
+    tree.insert(tree.root,9);
+    tree.insert(tree.root,10);
+    cout << tree.numberOfSearches(tree.root,10) << endl;
     return 0;
 }

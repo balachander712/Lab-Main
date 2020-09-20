@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 using namespace std;
 
 class Node{
@@ -29,11 +30,14 @@ public:
     void traverseInOrder(Node*&);
     void traversePreOrder(Node*&);
     void traversePostOrder(Node*&);
+    void traverseLevelOrder(Node*&);
     int getMinValue(Node*&);
     int getMaxValue(Node*&);
     Node* getLeftChild(Node*&,int);
     Node* getRightChild(Node*&,int);
     bool findElement(Node*&,int);
+    int numberOfSearches(Node*&,int);
+    int countLeaf(Node*&);
 };
 
 void Tree:: insert(Node*& node, int value){
@@ -116,6 +120,22 @@ int Tree:: getMaxValue(Node*& node){
     }
 }
 
+void Tree::traverseLevelOrder(Node*& node){
+    if(node == NULL) return;
+    queue<Node*> Q;
+    Q.push(node);
+    while(!Q.empty()){
+        Node* current = Q.front();
+        cout << current->data << " ";
+        if(current->leftChild != NULL)
+            Q.push(current->leftChild);
+        if(current->rightChild != NULL)
+            Q.push(current->rightChild);
+        Q.pop();
+    }
+
+}
+
 void Tree:: traverseInOrder(Node*& node){
     if(node != NULL){
         traverseInOrder(node->leftChild);
@@ -154,6 +174,20 @@ bool Tree::findElement(Node*& node,int value){
     return false;
 }
 
+int Tree::countLeaf(Node*& node){
+    if(node != NULL){
+        if(node->leftChild == NULL && node->rightChild == NULL){
+            return 1;
+        }
+        int leftCount = countLeaf(node->leftChild);
+        int rightCount = countLeaf(node->rightChild);
+        return leftCount + rightCount;
+    }
+    else{
+        return 0;
+    }
+}
+
 Node* Tree::getLeftChild(Node*& node,int value){
     if(findElement(node,value)){
         if(value == node->data){
@@ -182,18 +216,30 @@ Node* Tree::getRightChild(Node*& node,int value){
     }
 }
 
+int Tree::numberOfSearches(Node*& node,int value){
+    if(value == node->data) 
+        return 1;
+    else if(node->leftChild == NULL && node->rightChild == NULL)   
+        return false;
+    else if(value < node->data)
+        return (1 + numberOfSearches(node->leftChild,value));
+    else 
+        return (1 + numberOfSearches(node->rightChild,value));
+}
+
 int main(){
 
     Tree tree;
-    tree.insert(tree.root,10);
+    tree.insert(tree.root,45);
     tree.insert(tree.root,20);
-    tree.insert(tree.root,-1);
-    tree.insert(tree.root,5);
     tree.insert(tree.root,30);
+    tree.insert(tree.root,4);
+    tree.insert(tree.root,55);
     tree.insert(tree.root,50);
-    tree.insert(tree.root,2);
-    tree.deleteNode(tree.root,30);
-    tree.deleteNode(tree.root,2);
-    tree.traverseInOrder(tree.root);
+    tree.insert(tree.root,17);
+    tree.insert(tree.root,79);
+    tree.insert(tree.root,91);
+    tree.insert(tree.root,25);
+    tree.traverseLevelOrder(tree.root);
     return 0;
 }
