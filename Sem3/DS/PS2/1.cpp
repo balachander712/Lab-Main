@@ -71,18 +71,83 @@ void Node:: insert(int value){
 
 void Node:: LLRotation(Node node){
     //implement rotations
+    Node* left = node.leftChild;
+    Node* leftRight = left->rightChild;
+
+    left->rightChild = &node;
+    node.leftChild = leftRight;
+
+    node.height = getNodeHeight(node);
+    left->height = getNodeHeight(*left);
+
+    AVLTree temp;
+    if(temp.root == &node){
+        temp.root = left;
+    }
+    
 }
 
 void Node:: LRRotation(Node node){
     //implement rotations
+    Node* left = node.leftChild;
+    Node* leftRight = left->rightChild;
+    Node* leftRightRight = leftRight->rightChild;
+    Node* leftRightLeft = leftRight->leftChild;
+
+    leftRight->rightChild = &node;
+    leftRight->leftChild = left;
+    left->rightChild = leftRightLeft;
+    node.rightChild = leftRightRight;
+
+    node.height = getNodeHeight(node);
+    left->height = getNodeHeight(*left);
+    leftRight->height = getNodeHeight(*leftRight);
+
+    AVLTree temp;
+    if(temp.root == &node){
+        temp.root == leftRight;
+    }
+    
 }
 
 void Node:: RLRotation(Node node){
     //implement rotations
+    
+    Node* right = node.rightChild;
+    Node* rightLeft = right->leftChild;
+    Node* rightLeftLeft = rightLeft->leftChild;
+    Node* rigthLeftRight = rightLeft->rightChild;
+
+    rightLeft->rightChild = right;
+    rightLeft->leftChild = &node;
+    right->leftChild = rigthLeftRight;
+    node.rightChild = rightLeftLeft;
+
+    rightLeft->height = getNodeHeight(*rightLeft);
+    node.height = getNodeHeight(node);
+    right->height = getNodeHeight(*right);
+
+    AVLTree temp;
+    if(temp.root == &node){
+        temp.root = rightLeft;
+    }
 }
 
 void Node:: RRRotation(Node node){
     //implement rotations
+    Node* right = node.rightChild;
+    Node* rightLeft = right->leftChild;
+
+    right->leftChild = &node;
+    node.rightChild = rightLeft;
+
+    node.height = getNodeHeight(node);
+    right->height = getNodeHeight(*right);
+
+    AVLTree temp;
+    if(temp.root == &node){
+        temp.root = right;
+    }
 }
 
 void Node:: traverseInorder(){
@@ -136,9 +201,10 @@ bool Node:: hasRightChild(){
 }
 
 class AVLTree{
-    
-    Node* root;
+
 public:
+
+    static Node* root;
     AVLTree();
     void insert(int);
     void traverseInorder();
