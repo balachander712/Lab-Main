@@ -105,6 +105,8 @@ int Tree::getMinValue(Node*& node){
     else{
         getMinValue(node->leftChild);
     }
+
+    return 0;
 }
 
 int Tree:: getMaxValue(Node*& node){
@@ -112,8 +114,10 @@ int Tree:: getMaxValue(Node*& node){
         return node->data;
     }
     else{
-        getMaxValue(node->rightChild);
+         getMaxValue(node->rightChild);
     }
+
+    return 0;
 }
 
 void Tree:: traverseInOrder(Node*& node){
@@ -163,9 +167,11 @@ Node* Tree::getLeftChild(Node*& node,int value){
             getLeftChild(node->leftChild,value);
         }
         else{
-            getLeftChild(node->rightChild,value);
+             getLeftChild(node->rightChild,value);
         }
     }
+
+    return NULL;
 }
 
 Node* Tree::getRightChild(Node*& node,int value){
@@ -174,12 +180,14 @@ Node* Tree::getRightChild(Node*& node,int value){
             return node->rightChild;
         }
         else if(value < node->data){
-            getRightChild(node->leftChild,value);
+             getRightChild(node->leftChild,value);
         }
         else{
             getRightChild(node->rightChild,value);
         }
     }
+
+    return NULL;
 }
 
 int main(){

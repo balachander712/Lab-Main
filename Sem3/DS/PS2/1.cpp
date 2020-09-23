@@ -20,27 +20,27 @@ Node:: Node(int value){
     rightChild = NULL;
 }
 
-
 class Tree{
 
 public:
     Node* root;
-    Tree() { root = NULL; };
+    Tree() { root = NULL; }
     void insert(Node*&,int);
-    void traverseInOrder(Node*&);
-    void LLRotation(Node*&);
-    void LRRotation(Node*&);
-    void RRRotation(Node*&);
-    void RLRotation(Node*&);
+    Node* LLRotation(Node*&);
+    Node* LRRotation(Node*&);
+    Node* RRRotation(Node*&);
+    Node* RLRotation(Node*&);
+    int getBalanceFactor(Node*& node);
     int getNodeHeight(Node*&);
-    int getBalanceFactor(Node*&);
-
+    void traverseInOrder(Node*&);
+    int max(int,int);
 };
 
 void Tree:: insert(Node*& node, int value){
     
     if(node == NULL){
         node = new Node(value);
+        node->height = 1;
         return;
     }
 
@@ -51,117 +51,55 @@ void Tree:: insert(Node*& node, int value){
         insert(node->rightChild,value);
     }
 
-    node->height = getNodeHeight(node);
+    node->height = 1 + max(getNodeHeight(node->leftChild), getNodeHeight(node->rightChild));
 
-    if(getBalanceFactor(node) == 2  && getBalanceFactor(node->leftChild) == 1){
-        //perform LL rotation
-        LLRotation(node);
-        traverseInOrder(root);
-    }
-    else if(getBalanceFactor(node) == 2 && getBalanceFactor(node->leftChild) == -1){
-        //perform LR rotation
-        LRRotation(node);
-        traverseInOrder(root);
-    }
-    else if(getBalanceFactor(node) == -2 && getBalanceFactor(node->rightChild) == -1){
-        //perform RR rotation
-        RRRotation(node);
-        traverseInOrder(root);
-    }
-    else if(getBalanceFactor(node) == -2 && getBalanceFactor(node->rightChild) == 1){
-        // perform RL rotation
-        RLRotation(node);
-        traverseInOrder(root);
-    }
+    int balanceFactor = getBalanceFactor(node);
 
-        
+    if(balanceFactor > 1 && value < node->leftChild->data){
+        node = LLRotation(node);
+        traverseInOrder(root);
+    }
+    if(balanceFactor < -1 && value > node->rightChild->data){
+        node = RRRotation(node);
+        traverseInOrder(root);
+    }
+    if(balanceFactor > 1 && value > node->leftChild->data){
+        node->leftChild = RRRotation(node->leftChild);
+        node = LLRotation(node);
+        traverseInOrder(node);
+    }
+    if(balanceFactor < -1 && value < node->rightChild->data){
+        node->rightChild = LLRotation(node->rightChild);
+        node = RRRotation(node);
+        traverseInOrder(node);
+    }
+    
 }
 
-void Tree::LLRotation(Node*& node){
-
+Node* Tree::LLRotation(Node*& node){
+    
     Node* left = node->leftChild;
-    Node* leftRight = left->rightChild;
-
+    node->leftChild = left->rightChild;
     left->rightChild = node;
-    node->leftChild = leftRight;
 
     node->height = getNodeHeight(node);
     left->height = getNodeHeight(left);
 
-    if(root == node) root = left;
+    return left;
 }
 
-void Tree::LRRotation(Node*& node){
-
-    Node* left = node->leftChild;
-    Node* leftRight = left->rightChild;
-    Node* leftRightLeft = leftRight->leftChild;
-    Node* leftRightRight = leftRightLeft->rightChild;
-
-    leftRight->rightChild = node;
-    leftRight->leftChild = left;
-    node->rightChild = leftRightRight;
-    left->leftChild = leftRightLeft;
-
-    leftRight->height = getNodeHeight(leftRight);
-    node->height = getNodeHeight(node);
-    left->height = getNodeHeight(left);
-
-    if(root == node) root = leftRight;
-}
-
-
-void Tree::RRRotation(Node*& node){
+Node* Tree::RRRotation(Node*& node){
 
     Node* right = node->rightChild;
-    Node* rightLeft = right->leftChild;
-
+    node->rightChild = right->leftChild;
     right->leftChild = node;
-    node->rightChild = rightLeft;
 
-    right->height = getNodeHeight(right);
-    node->height = getNodeHeight(node);
-
-    if(root == node) root = right;
-}
-
-void Tree::RRRotation(Node*& node){
-
-    Node* right = node->rightChild;
-    Node* rightLeft = right->leftChild;
-    Node* rightLeftLeft = rightLeft->leftChild;
-    Node* rightLeftRight = rightLeft->rightChild;
-
-    rightLeft->leftChild = node;
-    rightLeft->rightChild = right;
-    node->rightChild = rightLeftLeft;
-    right->leftChild = rightLeftRight;
-
-    rightLeft->height = getNodeHeight(rightLeft);
     node->height = getNodeHeight(node);
     right->height = getNodeHeight(right);
 
-    if(root == node) root = rightLeft;
+    return right;
 }
 
-int Tree:: getNodeHeight(Node*& node){
-
-    int left,right;
-
-    left = node->leftChild == NULL ? 0 : node->leftChild->height;
-    right = node->rightChild == NULL ? 0 : node->rightChild->height;
-
-    return left > right ? left + 1 : right + 1;
-}
-
-int Tree:: getBalanceFactor(Node*& node){
-    int left,right;
-
-    left = node->leftChild == NULL ? 0 : node->leftChild->height;
-    right = node->rightChild == NULL ? 0 : node->rightChild->height;
-
-    return left - right;
-}
 
 void Tree:: traverseInOrder(Node*& node){
     if(node != NULL){
@@ -171,7 +109,35 @@ void Tree:: traverseInOrder(Node*& node){
     }
 }
 
+int Tree::getNodeHeight(Node*& node){
+    if(node == NULL) return 0;
+
+    return node->height;
+}
+
+int Tree::getBalanceFactor(Node*& node){
+    
+    if(node == NULL) return 0;
+
+    return getNodeHeight(node->leftChild) - getNodeHeight(node->rightChild);
+}
+
+int Tree::max(int num1, int num2){
+
+    return num1 > num2 ? num1 : num2;
+}
+
 int main(){
+
+    Tree tree;
+    tree.insert(tree.root,10);
+    tree.insert(tree.root,20);
+    tree.insert(tree.root,30);
+    tree.insert(tree.root,40);
+    tree.insert(tree.root,50);
+    tree.insert(tree.root,60);
+    tree.insert(tree.root,70);
+    tree.traverseInOrder(tree.root);
 
     return 0;
 }
