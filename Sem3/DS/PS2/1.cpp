@@ -27,9 +27,7 @@ public:
     Tree() { root = NULL; }
     void insert(Node*&,int);
     Node* LLRotation(Node*&);
-    Node* LRRotation(Node*&);
     Node* RRRotation(Node*&);
-    Node* RLRotation(Node*&);
     int getBalanceFactor(Node*& node);
     int getNodeHeight(Node*&);
     void traverseInOrder(Node*&);
