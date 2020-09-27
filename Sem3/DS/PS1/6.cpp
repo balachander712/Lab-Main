@@ -51,7 +51,7 @@ int Tree::getNodeCount(Node*& node){
         return count;
     }
 
-    
+    return INT32_MIN;
 }
 
 int Tree::getHeight(Node*& node){

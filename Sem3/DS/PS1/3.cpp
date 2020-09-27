@@ -109,6 +109,8 @@ int Tree::getMinValue(Node*& node){
     else{
         getMinValue(node->leftChild);
     }
+
+    return INT32_MIN;
 }
 
 int Tree:: getMaxValue(Node*& node){
@@ -118,6 +120,8 @@ int Tree:: getMaxValue(Node*& node){
     else{
         getMaxValue(node->rightChild);
     }
+
+    return INT32_MAX;
 }
 
 void Tree::traverseLevelOrder(Node*& node){
@@ -200,6 +204,8 @@ Node* Tree::getLeftChild(Node*& node,int value){
             getLeftChild(node->rightChild,value);
         }
     }
+
+    return NULL;
 }
 
 Node* Tree::getRightChild(Node*& node,int value){
@@ -214,6 +220,9 @@ Node* Tree::getRightChild(Node*& node,int value){
             getRightChild(node->rightChild,value);
         }
     }
+
+    return NULL;
+    
 }
 
 int Tree::numberOfSearches(Node*& node,int value){

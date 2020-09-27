@@ -50,7 +50,7 @@ int Tree::getNodeCount(Node*& node){
         return count;
     }
 
-    
+    return INT32_MIN;    
 }
 
 
