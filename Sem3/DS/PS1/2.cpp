@@ -104,7 +104,7 @@ int Tree::getMinValue(Node*& node){
         return node->data;
     }
     else{
-        getMinValue(node->leftChild);
+        return getMinValue(node->leftChild);
     }
 
     return INT32_MIN;
@@ -115,7 +115,7 @@ int Tree:: getMaxValue(Node*& node){
         return node->data;
     }
     else{
-        getMaxValue(node->rightChild);
+        return getMaxValue(node->rightChild);
     }
 
     return INT32_MAX;
@@ -165,10 +165,10 @@ Node* Tree::getLeftChild(Node*& node,int value){
             return node->leftChild;
         }
         else if(value < node->data){
-            getLeftChild(node->leftChild,value);
+            return getLeftChild(node->leftChild,value);
         }
         else{
-            getLeftChild(node->rightChild,value);
+            return getLeftChild(node->rightChild,value);
         }
     }
 
@@ -181,10 +181,10 @@ Node* Tree::getRightChild(Node*& node,int value){
             return node->rightChild;
         }
         else if(value < node->data){
-            getRightChild(node->leftChild,value);
+            return getRightChild(node->leftChild,value);
         }
         else{
-            getRightChild(node->rightChild,value);
+            return getRightChild(node->rightChild,value);
         }
     }
 
@@ -216,5 +216,8 @@ int main(){
     tree.insert(tree.root,9);
     tree.insert(tree.root,10);
     cout << tree.numberOfSearches(tree.root,10) << endl;
+    // tree.traverseInOrder(tree.root);
+    // cout << endl << tree.getMinValue(tree.root) << endl;
+    // cout << tree.getMaxValue(tree.root) << endl;
     return 0;
 }

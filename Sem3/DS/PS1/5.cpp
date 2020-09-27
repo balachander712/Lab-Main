@@ -71,7 +71,7 @@ int main(){
             break;
         
         tree.insert(tree.root,value);
-        //cout << "He";
+        //cout << "testing";
     }
     
 
