@@ -250,5 +250,6 @@ int main(){
     tree.insert(tree.root,91);
     tree.insert(tree.root,25);
     tree.traverseLevelOrder(tree.root);
+    cout << "Number of leaf nodes is/are" << tree.countLeaf(tree.root) << endl;  
     return 0;
 }

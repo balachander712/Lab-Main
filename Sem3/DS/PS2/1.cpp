@@ -33,7 +33,6 @@ public:
     int getBalanceFactor(Node*& node);
     int getNodeHeight(Node*&);
     void traverseInOrder(Node*&);
-    int max(int,int);
 };
 
 void Tree:: insert(Node*& node, int value){
@@ -41,6 +40,10 @@ void Tree:: insert(Node*& node, int value){
     if(node == NULL){
         node = new Node(value);
         node->height = 1;
+        return;
+    }
+
+    if(node->data == value){
         return;
     }
 
@@ -153,10 +156,6 @@ int Tree::getBalanceFactor(Node*& node){
 
 }
 
-int Tree::max(int num1, int num2){
-
-    return num1 > num2 ? num1 : num2;
-}
 
 int main(){
 

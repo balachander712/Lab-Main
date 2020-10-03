@@ -43,6 +43,8 @@ void Tree:: insert(Node*& node, int value){
         return;
     }
 
+    if(node->data == value) return;
+
     else if(value < node->data){
         insert(node->leftChild, value);
     }

@@ -27,13 +27,19 @@ public:
     Tree() { root = NULL; }
     void insert(Node*&,int);
     void deleteNode(Node*&,int);
+    void deleteMin(Node*&);
+    void deleteRoot(Node*&);
     Node* LLRotation(Node*&);
     Node* RRRotation(Node*&);
+    Node* LRRotation(Node*&);
+    Node* RLRotation(Node*&);
+    int getMinValue(Node*&);
     int getBalanceFactor(Node*& node);
     int getNodeHeight(Node*&);
+    int getHeight(Node*&);
+    int countLeaf(Node*&);
     void traverseInOrder(Node*&);
-    int getMinValue(Node*&);
-    int max(int,int);
+    bool findElement(Node*&,int);
 };
 
 void Tree:: insert(Node*& node, int value){
@@ -44,6 +50,10 @@ void Tree:: insert(Node*& node, int value){
         return;
     }
 
+    if(node->data == value){
+        return;
+    }
+
     else if(value < node->data){
         insert(node->leftChild, value);
     }
@@ -51,29 +61,58 @@ void Tree:: insert(Node*& node, int value){
         insert(node->rightChild,value);
     }
 
-    node->height = 1 + max(getNodeHeight(node->leftChild), getNodeHeight(node->rightChild));
+    node->height = getNodeHeight(node);
 
     int balanceFactor = getBalanceFactor(node);
 
     if(balanceFactor > 1 && value < node->leftChild->data){
         node = LLRotation(node);
+
+
+        cout << "LL ROTATION -->  ";
         traverseInOrder(root);
+        cout << endl;
     }
     if(balanceFactor < -1 && value > node->rightChild->data){
         node = RRRotation(node);
+
+
+        cout << "RR ROTATION -->  ";
         traverseInOrder(root);
+        cout << endl;
     }
     if(balanceFactor > 1 && value > node->leftChild->data){
-        node->leftChild = RRRotation(node->leftChild);
-        node = LLRotation(node);
+        node = LRRotation(node);
+
+        cout << "LR ROTATION -->  ";
         traverseInOrder(node);
+        cout << endl;
     }
     if(balanceFactor < -1 && value < node->rightChild->data){
-        node->rightChild = LLRotation(node->rightChild);
-        node = RRRotation(node);
+        node = RLRotation(node);
+
+        
+        cout << "RL ROTATION -->  ";
         traverseInOrder(node);
+        cout << endl;
     }
     
+}
+
+void Tree::deleteMin(Node*& node){
+    if(node == NULL){
+        return;
+    }
+
+    int min = getMinValue(node);
+    deleteNode(node,min);
+}
+
+void Tree::deleteRoot(Node*& node){
+    if(node == root){
+        int value = node->data;
+        deleteNode(node,value);
+    }
 }
 
 void Tree::deleteNode(Node*& node,int value){
@@ -110,59 +149,71 @@ void Tree::deleteNode(Node*& node,int value){
         }
     }
 
-    // node->height = 1 + max(getNodeHeight(node->leftChild),getNodeHeight(node->rightChild));
-    //node->height = 1 + max(getNodeHeight(node->leftChild), getNodeHeight(node->rightChild));
+    if(node == NULL) return;
+
+    node->height = getNodeHeight(node);
     int balance = getBalanceFactor(node);
 
-    if(balance > 1 && getBalanceFactor(node->leftChild) >= 0){
-        node = LLRotation(node);
+    //perform AVL Rotations
+    if(node != NULL && (balance != 1 && balance != -1 && balance != 0)){
+        if(node->data < value && (getBalanceFactor(node->leftChild) == 0 || getBalanceFactor(node->leftChild) == -1)){
+            //LL rotation
+            node = LLRotation(node);
+        }
+        if(node->data < value && (getBalanceFactor(node->leftChild) == 1)){
+            //R-1
+            node = LRRotation(node);
+        }
+        if(node->data > value && node->rightChild == NULL){
+            //LL
+            node = LLRotation(node);
+        }
+        if(node->data > value && (getBalanceFactor(node->rightChild) == 0 || getBalanceFactor(node->rightChild) == -1)){
+            //RR
+            node = RRRotation(node);
+        }
+        if(node->data < value && getBalanceFactor(node->leftChild) == -1){
+            //L1
+            node = RLRotation(node);
+        }
     }
-    if(balance > 1 && getBalanceFactor(node->leftChild) < 0){
-        node->leftChild = RRRotation(node->leftChild);
-        node = LLRotation(node);
-    }
-    if(balance < -1 && getBalanceFactor(node->rightChild) <= 0){
-        node = RRRotation(node);
-    }
-    if(balance < -1 && getBalanceFactor(node->rightChild) > 0){
-        node->rightChild = LLRotation(node->rightChild);
-        node = RRRotation(node);
-    }
+    
 }
 
 Node* Tree::LLRotation(Node*& node){
-    
-    Node* left = node->leftChild;
-    node->leftChild = left->rightChild;
-    left->rightChild = node;
+    Node* temp = node->leftChild;
+    node->leftChild = temp->rightChild;
+    temp->rightChild = node;
 
     node->height = getNodeHeight(node);
-    left->height = getNodeHeight(left);
+    temp->height = getNodeHeight(temp);
 
-    return left;
+    return temp;
+
 }
 
 Node* Tree::RRRotation(Node*& node){
 
-    Node* right = node->rightChild;
-    node->rightChild = right->leftChild;
-    right->leftChild = node;
+    Node* temp = node->rightChild;
+    node->rightChild = temp->leftChild;
+    temp->leftChild = node;
 
     node->height = getNodeHeight(node);
-    right->height = getNodeHeight(right);
-
-    return right;
+    temp->height = getNodeHeight(temp);
+    
+    return temp;
 }
 
-int Tree::getMinValue(Node*& node){
-    if(node->leftChild == NULL){
-        return node->data;
-    }
-    else{
-        getMinValue(node->leftChild);
-    }
+Node* Tree::LRRotation(Node*& node){
+    Node* temp = node->leftChild;
+    node->leftChild = RRRotation(temp);
+    return LLRotation(node);
+}
 
-    return INT32_MIN;
+Node* Tree::RLRotation(Node*& node){
+    Node* temp = node->rightChild;
+    node->rightChild = LLRotation(temp);
+    return RRRotation(node);
 }
 
 void Tree:: traverseInOrder(Node*& node){
@@ -171,30 +222,86 @@ void Tree:: traverseInOrder(Node*& node){
         cout << node->data << " ";
         traverseInOrder(node->rightChild);
     }
+
 }
 
 int Tree::getNodeHeight(Node*& node){
-    if(node == NULL) return 0;
+    int left,right;
 
-    return node->height;
+    left = node && node->leftChild ? node->leftChild->height : 0;
+    right = node && node->rightChild ? node->rightChild->height : 0;
+
+    return left > right ? left + 1 : right + 1;
 }
 
 int Tree::getBalanceFactor(Node*& node){
-    
-    if(node == NULL) return 0;
+    int left,right;
 
-    return getNodeHeight(node->leftChild) - getNodeHeight(node->rightChild);
+    left = node && node->leftChild ? node->leftChild->height : 0;
+    right = node && node->rightChild ? node->rightChild->height : 0;
+
+    return left - right;
+
 }
 
-int Tree::max(int num1, int num2){
+int Tree::getMinValue(Node*& node){
+    if(node != NULL){
+        if(node->leftChild == NULL){
+            return node->data;
+        }
+        else
+        {
+            return getMinValue(node->leftChild);
+        }
+        
+    }
 
-    return num1 > num2 ? num1 : num2;
+    return INT32_MIN;
+}
+
+bool Tree::findElement(Node*& node,int value){
+    
+    if(node->data == value)
+        return true;
+    else if(value < node->data){
+        findElement(node->leftChild,value);
+    }
+    else{
+        findElement(node->rightChild,value);
+    }
+
+    return false;
+}
+
+int Tree::getHeight(Node*& node){
+
+    if(node == NULL) return 0;
+
+    else{
+        int left = getHeight(node->leftChild);
+        int right = getHeight(node->rightChild);
+
+        return left > right ? left + 1 : right + 1;
+    }
+}
+
+int Tree::countLeaf(Node*& node){
+    if(node != NULL){
+        if(node->leftChild == NULL && node->rightChild == NULL){
+            return 1;
+        }
+        int leftCount = countLeaf(node->leftChild);
+        int rightCount = countLeaf(node->rightChild);
+        return leftCount + rightCount;
+    }
+    else{
+        return 0;
+    }
 }
 
 int main(){
 
     Tree tree;
-    cout << "Hello";
     tree.insert(tree.root,10);
     tree.insert(tree.root,20);
     tree.insert(tree.root,30);
@@ -202,10 +309,20 @@ int main(){
     tree.insert(tree.root,50);
     tree.insert(tree.root,60);
     tree.insert(tree.root,70);
-    cout << "Hey dumbass" << endl;
+    tree.insert(tree.root,80);
+    tree.insert(tree.root,90);
+    tree.insert(tree.root,100);
+    tree.insert(tree.root,110);
+    //tree.deleteNode(tree.root,70);
+    //tree.deleteNode(tree.root,10);
+    //tree.deleteMin(tree.root);
+    tree.deleteRoot(tree.root);
     tree.traverseInOrder(tree.root);
-    tree.deleteNode(tree.root,30);
-    tree.traverseInOrder(tree.root);
+    cout << endl;
+
+    tree.findElement(tree.root,50) ? cout << "Found!!" << endl : cout << "Not Found!!" << endl ;
+    cout << tree.getHeight(tree.root) << endl;
+    cout << tree.countLeaf(tree.root) << endl;
 
     return 0;
 }

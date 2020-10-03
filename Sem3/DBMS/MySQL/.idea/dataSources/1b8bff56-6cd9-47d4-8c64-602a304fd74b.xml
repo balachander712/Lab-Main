@@ -726,44 +726,146 @@
       <ObjectGrants>ALL PRIVILEGES|19pw06:null
 </ObjectGrants>
     </user>
-    <table id="227" parent="2" name="EMPTABLE"/>
-    <column id="228" parent="227" name="Empid">
+    <table id="227" parent="2" name="Customer"/>
+    <table id="228" parent="2" name="EMPTABLE"/>
+    <table id="229" parent="2" name="Items_Ordered"/>
+    <table id="230" parent="2" name="employee"/>
+    <column id="231" parent="227" name="Customer_ID">
+      <Position>1</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="232" parent="227" name="First_Name">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <column id="233" parent="227" name="Last_Name">
+      <Position>3</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <column id="234" parent="227" name="City">
+      <Position>4</Position>
+      <DataType>varchar(50)|0s</DataType>
+    </column>
+    <column id="235" parent="227" name="State">
+      <Position>5</Position>
+      <DataType>varchar(50)|0s</DataType>
+    </column>
+    <key id="236" parent="227" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>Customer_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="237" parent="228" name="Empid">
       <Position>1</Position>
       <DataType>int(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="229" parent="227" name="Name">
+    <column id="238" parent="228" name="Name">
       <Position>2</Position>
       <DataType>varchar(15)|0s</DataType>
     </column>
-    <column id="230" parent="227" name="City">
+    <column id="239" parent="228" name="City">
       <Position>3</Position>
       <DataType>varchar(10)|0s</DataType>
     </column>
-    <column id="231" parent="227" name="DateofBirth">
+    <column id="240" parent="228" name="DateofBirth">
       <Position>4</Position>
       <DataType>date|0s</DataType>
     </column>
-    <column id="232" parent="227" name="Sex">
+    <column id="241" parent="228" name="Sex">
       <Position>5</Position>
       <DataType>char(1)|0s</DataType>
     </column>
-    <column id="233" parent="227" name="DoJ">
+    <column id="242" parent="228" name="DoJ">
       <Position>6</Position>
       <DataType>date|0s</DataType>
     </column>
-    <column id="234" parent="227" name="Salary">
+    <column id="243" parent="228" name="Salary">
       <Position>7</Position>
       <DataType>int(8)|0s</DataType>
     </column>
-    <column id="235" parent="227" name="Department">
+    <column id="244" parent="228" name="Department">
       <Position>8</Position>
       <DataType>varchar(10)|0s</DataType>
     </column>
-    <key id="236" parent="227" name="PRIMARY">
+    <key id="245" parent="228" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Empid</ColNames>
       <Primary>1</Primary>
     </key>
+    <column id="246" parent="229" name="Customer_ID">
+      <Position>1</Position>
+      <DataType>bigint(20)|0s</DataType>
+    </column>
+    <column id="247" parent="229" name="Order_Date">
+      <Position>2</Position>
+      <DataType>date|0s</DataType>
+    </column>
+    <column id="248" parent="229" name="Item">
+      <Position>3</Position>
+      <DataType>varchar(50)|0s</DataType>
+    </column>
+    <column id="249" parent="229" name="Quantity">
+      <Position>4</Position>
+      <DataType>int(11)|0s</DataType>
+    </column>
+    <column id="250" parent="229" name="Price">
+      <Position>5</Position>
+      <DataType>decimal(6,2 digit)|0s</DataType>
+    </column>
+    <column id="251" parent="230" name="ENO">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="252" parent="230" name="First_Name">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="253" parent="230" name="Last_Name">
+      <Position>3</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="254" parent="230" name="Designation">
+      <Position>4</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <column id="255" parent="230" name="MGR">
+      <Position>5</Position>
+      <DataType>int(11)|0s</DataType>
+    </column>
+    <column id="256" parent="230" name="DOB">
+      <Position>6</Position>
+      <DataType>date|0s</DataType>
+    </column>
+    <column id="257" parent="230" name="HDATE">
+      <Position>7</Position>
+      <DataType>date|0s</DataType>
+    </column>
+    <column id="258" parent="230" name="Salary">
+      <Position>8</Position>
+      <DataType>int(11)|0s</DataType>
+    </column>
+    <column id="259" parent="230" name="Commission">
+      <Position>9</Position>
+      <DataType>int(11)|0s</DataType>
+    </column>
+    <index id="260" parent="230" name="MGR">
+      <ColNames>MGR</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="261" parent="230" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ENO</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="262" parent="230" name="employee_ibfk_1">
+      <ColNames>MGR</ColNames>
+      <RefTableName>employee</RefTableName>
+      <RefColNames>ENO</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

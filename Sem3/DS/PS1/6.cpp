@@ -58,7 +58,12 @@ int Tree::getHeight(Node*& node){
 
     if(node == NULL) return 0;
 
-    return getHeight(node->leftChild) + getHeight(node->rightChild) + 1;
+    else{
+        int left = getHeight(node->leftChild);
+        int right = getHeight(node->rightChild);
+
+        return left > right ? left + 1 : right + 1;
+    }
 }
 
 int main(){
