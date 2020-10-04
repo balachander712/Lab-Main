@@ -160,17 +160,29 @@ int Tree::getBalanceFactor(Node*& node){
 int main(){
 
     Tree tree;
-    tree.insert(tree.root,10);
-    tree.insert(tree.root,20);
-    tree.insert(tree.root,30);
-    tree.insert(tree.root,40);
-    tree.insert(tree.root,50);
-    tree.insert(tree.root,60);
-    tree.insert(tree.root,70);
-    tree.insert(tree.root,80);
-    tree.insert(tree.root,90);
-    tree.insert(tree.root,100);
-    tree.insert(tree.root,110);
+
+    int value;
+    cout << "Enter the values to be inserted/-1 to terminate " << endl;
+
+    while(true){
+        cin >> value;
+
+        if(value == -1) break;
+
+        tree.insert(tree.root,value);
+    }
+
+    // tree.insert(tree.root,10);
+    // tree.insert(tree.root,20);
+    // tree.insert(tree.root,30);
+    // tree.insert(tree.root,40);
+    // tree.insert(tree.root,50);
+    // tree.insert(tree.root,60);
+    // tree.insert(tree.root,70);
+    // tree.insert(tree.root,80);
+    // tree.insert(tree.root,90);
+    // tree.insert(tree.root,100);
+    // tree.insert(tree.root,110);
     tree.traverseInOrder(tree.root);
 
     return 0;
