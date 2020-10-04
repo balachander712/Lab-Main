@@ -291,10 +291,10 @@ bool Tree::findElement(Node*& node,int value){
     if(node->data == value)
         return true;
     else if(value < node->data){
-        findElement(node->leftChild,value);
+        return findElement(node->leftChild,value);
     }
     else{
-        findElement(node->rightChild,value);
+        return findElement(node->rightChild,value);
     }
 
     return false;
