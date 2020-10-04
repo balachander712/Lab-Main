@@ -1,4 +1,6 @@
 #include <iostream>
+#include <queue>
+#include <stack>
 using namespace std;
 
 
@@ -29,6 +31,7 @@ public:
     void deleteNode(Node*&,int);
     void deleteMin(Node*&);
     void deleteRoot(Node*&);
+    void deleteNodeLeftChild(Node*&);
     Node* LLRotation(Node*&);
     Node* RRRotation(Node*&);
     Node* LRRotation(Node*&);
@@ -38,7 +41,9 @@ public:
     int getNodeHeight(Node*&);
     int getHeight(Node*&);
     int countLeaf(Node*&);
+    void returnKeysBet(Node*&,int,int);
     void traverseInOrder(Node*&);
+    vector<int> returnInOrder(Node*&);
     bool findElement(Node*&,int);
 };
 
@@ -113,6 +118,28 @@ void Tree::deleteRoot(Node*& node){
         int value = node->data;
         deleteNode(node,value);
     }
+}
+
+void Tree::deleteNodeLeftChild(Node*& node){
+    queue<Node*> Q;
+    Q.push(node);
+
+    while (!Q.empty())
+    {
+        Node* current = Q.front();
+        cout << current->data << " ";
+        if(current->leftChild != NULL && current->rightChild == NULL){
+            deleteNode(node,current->data);
+            return;
+        }
+        if(current->leftChild != NULL)
+            Q.push(current->leftChild);
+        if(current->rightChild != NULL)
+            Q.push(current->rightChild);
+        Q.pop();
+    }
+    
+
 }
 
 void Tree::deleteNode(Node*& node,int value){
@@ -299,6 +326,51 @@ int Tree::countLeaf(Node*& node){
     }
 }
 
+void Tree::returnKeysBet(Node*& node,int key1,int key2){
+    //traverse tree in-level order
+    //store it in an array
+    vector<int> vect = returnInOrder(node);
+    vector<int> temp;
+    for(int i = 0; i < vect.size(); i++){
+        if(vect[i] >= key1 && vect[i] <= key2){
+            temp.push_back(vect[i]);
+        }
+    }
+
+    for(int i = 0; i < temp.size(); i++){
+        cout << temp[i] << " ";
+    }
+
+    cout << endl;
+}
+
+vector<int> Tree:: returnInOrder(Node*& node){
+    stack<Node*> S;
+    vector<int> vect;
+
+    Node* current = node;
+
+    while(current != NULL || S.empty() == false){
+
+        while(current != NULL){
+            S.push(current);
+            current = current->leftChild;
+        }
+
+        current = S.top();
+        S.pop();
+
+        //cout << current->data << " ";
+        vect.push_back(current->data);
+
+        current = current->rightChild;
+    }
+
+    return vect;
+
+}
+
+
 int main(){
 
     Tree tree;
@@ -316,13 +388,17 @@ int main(){
     //tree.deleteNode(tree.root,70);
     //tree.deleteNode(tree.root,10);
     //tree.deleteMin(tree.root);
-    tree.deleteRoot(tree.root);
+    //cout << endl;
+    //tree.deleteRoot(tree.root);
+    //tree.deleteNodeLeftChild(tree.root);
+    //cout << endl;
     tree.traverseInOrder(tree.root);
     cout << endl;
 
     tree.findElement(tree.root,50) ? cout << "Found!!" << endl : cout << "Not Found!!" << endl ;
     cout << tree.getHeight(tree.root) << endl;
     cout << tree.countLeaf(tree.root) << endl;
+    tree.returnKeysBet(tree.root,20,70);
 
     return 0;
 }
