@@ -182,27 +182,21 @@ void Tree::deleteNode(Node*& node,int value){
     int balance = getBalanceFactor(node);
 
     //perform AVL Rotations
-    if(node != NULL && (balance != 1 && balance != -1 && balance != 0)){
-        if(node->data < value && (getBalanceFactor(node->leftChild) == 0 || getBalanceFactor(node->leftChild) == -1)){
-            //LL rotation
-            node = LLRotation(node);
-        }
-        if(node->data < value && (getBalanceFactor(node->leftChild) == 1)){
-            //R-1
-            node = LRRotation(node);
-        }
-        if(node->data > value && node->rightChild == NULL){
-            //LL
-            node = LLRotation(node);
-        }
-        if(node->data > value && (getBalanceFactor(node->rightChild) == 0 || getBalanceFactor(node->rightChild) == -1)){
-            //RR
-            node = RRRotation(node);
-        }
-        if(node->data < value && getBalanceFactor(node->leftChild) == -1){
-            //L1
-            node = RLRotation(node);
-        }
+    if(balance > 1 && value < node->leftChild->data){
+        //LL
+        node = LLRotation(node);
+    }
+    if(balance < -1 && value > node->rightChild->data){
+        //RR
+        node = RRRotation(node);
+    }
+    if(balance > 1 && value > node->leftChild->data){
+        //LR
+        node = LRRotation(node);
+    }
+    if(balance < -1 && value < node->rightChild->data){
+        //RL
+        node = RLRotation(node);
     }
     
 }
@@ -374,6 +368,20 @@ vector<int> Tree:: returnInOrder(Node*& node){
 int main(){
 
     Tree tree;
+
+    // int value;
+
+    // cout << "Enter the values of the tree/-1 to terminate " << endl;
+
+    // while(true){
+    //     cin >> value;
+
+    //     if(value == -1) break;
+
+    //     tree.insert(tree.root,value);
+    // }
+
+
     tree.insert(tree.root,10);
     tree.insert(tree.root,20);
     tree.insert(tree.root,30);

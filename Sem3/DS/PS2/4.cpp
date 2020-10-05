@@ -77,7 +77,7 @@ void Tree:: convert(Node*& tree1, Node*& tree2){
                     //LR Rotation
                     tree1 = LRRotation(tree1);
                 }
-                if(tree1->rightChild != NULL && tree1->leftChild != NULL){
+                if(tree1->rightChild != NULL || tree1->leftChild != NULL){
                     //LL rotation
                     tree1 = LLRotation(tree1);
                 }
