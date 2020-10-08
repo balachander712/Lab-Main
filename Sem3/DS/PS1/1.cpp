@@ -3,10 +3,10 @@ using namespace std;
 
 class Node{
 
+public:
     int data;
     Node* leftChild;
     Node* rightChild;
-public:
     Node(int);
     friend class Tree;
 };
@@ -207,5 +207,7 @@ int main(){
     tree.traverseInOrder(tree.root);
     cout << endl << tree.getMinValue(tree.root) << endl;
     cout << tree.getMaxValue(tree.root) << endl;
+    Node* temp = tree.getRightChild(tree.root,20);
+    cout << temp->data << endl;
     return 0;
 }

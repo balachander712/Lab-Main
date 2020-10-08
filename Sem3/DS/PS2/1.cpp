@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 using namespace std;
 
 
@@ -33,6 +34,7 @@ public:
     int getBalanceFactor(Node*& node);
     int getNodeHeight(Node*&);
     void traverseInOrder(Node*&);
+    void traverseLevelOrder(Node*&);
 };
 
 void Tree:: insert(Node*& node, int value){
@@ -63,7 +65,7 @@ void Tree:: insert(Node*& node, int value){
 
 
         cout << "LL ROTATION -->  ";
-        traverseInOrder(root);
+        traverseLevelOrder(root);
         cout << endl;
     }
     if(balanceFactor < -1 && value > node->rightChild->data){
@@ -71,14 +73,14 @@ void Tree:: insert(Node*& node, int value){
 
 
         cout << "RR ROTATION -->  ";
-        traverseInOrder(root);
+        traverseLevelOrder(root);
         cout << endl;
     }
     if(balanceFactor > 1 && value > node->leftChild->data){
         node = LRRotation(node);
 
         cout << "LR ROTATION -->  ";
-        traverseInOrder(node);
+        traverseLevelOrder(node);
         cout << endl;
     }
     if(balanceFactor < -1 && value < node->rightChild->data){
@@ -86,7 +88,7 @@ void Tree:: insert(Node*& node, int value){
 
         
         cout << "RL ROTATION -->  ";
-        traverseInOrder(node);
+        traverseLevelOrder(node);
         cout << endl;
     }
     
@@ -156,34 +158,52 @@ int Tree::getBalanceFactor(Node*& node){
 
 }
 
+void Tree::traverseLevelOrder(Node*& node){
+    if(node == NULL) return;
+    queue<Node*> Q;
+    Q.push(node);
+    while(!Q.empty()){
+        Node* current = Q.front();
+        cout << current->data << " ";
+        if(current->leftChild != NULL)
+            Q.push(current->leftChild);
+        if(current->rightChild != NULL)
+            Q.push(current->rightChild);
+        Q.pop();
+    }
+
+}
+
+
 
 int main(){
 
     Tree tree;
 
-    int value;
-    cout << "Enter the values to be inserted/-1 to terminate " << endl;
+    // int value;
+    // cout << "Enter the values to be inserted/-1 to terminate " << endl;
 
-    while(true){
-        cin >> value;
+    // while(true){
+    //     cin >> value;
 
-        if(value == -1) break;
+    //     if(value == -1) break;
 
-        tree.insert(tree.root,value);
-    }
+    //     tree.insert(tree.root,value);
+    // }
 
-    // tree.insert(tree.root,10);
-    // tree.insert(tree.root,20);
-    // tree.insert(tree.root,30);
-    // tree.insert(tree.root,40);
-    // tree.insert(tree.root,50);
-    // tree.insert(tree.root,60);
-    // tree.insert(tree.root,70);
-    // tree.insert(tree.root,80);
-    // tree.insert(tree.root,90);
-    // tree.insert(tree.root,100);
-    // tree.insert(tree.root,110);
+    tree.insert(tree.root,12);
+    tree.insert(tree.root,24);
+    tree.insert(tree.root,3);
+    tree.insert(tree.root,9);
+    tree.insert(tree.root,16);
+    tree.insert(tree.root,2);
+    tree.insert(tree.root,19);
+    tree.insert(tree.root,26);
+    tree.insert(tree.root,82);
+    tree.insert(tree.root,53);
+    //tree.insert(tree.root,110);
     tree.traverseInOrder(tree.root);
+    tree.traverseLevelOrder(tree.root);
 
     return 0;
 }

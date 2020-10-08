@@ -382,31 +382,32 @@ int main(){
     // }
 
 
-    tree.insert(tree.root,10);
-    tree.insert(tree.root,20);
-    tree.insert(tree.root,30);
-    tree.insert(tree.root,40);
-    tree.insert(tree.root,50);
-    tree.insert(tree.root,60);
-    tree.insert(tree.root,70);
-    tree.insert(tree.root,80);
-    tree.insert(tree.root,90);
-    tree.insert(tree.root,100);
-    tree.insert(tree.root,110);
+    tree.insert(tree.root,5);
+    tree.insert(tree.root,3);
+    tree.insert(tree.root,7);
+    tree.insert(tree.root,2);
+    tree.insert(tree.root,4);
+    tree.insert(tree.root,6);
+    // tree.insert(tree.root,70);
+    // tree.insert(tree.root,80);
+    // tree.insert(tree.root,90);
+    // tree.insert(tree.root,100);
+    // tree.insert(tree.root,110);
     //tree.deleteNode(tree.root,70);
     //tree.deleteNode(tree.root,10);
     //tree.deleteMin(tree.root);
     //cout << endl;
     //tree.deleteRoot(tree.root);
-    //tree.deleteNodeLeftChild(tree.root);
+    tree.deleteNodeLeftChild(tree.root);
+    cout << endl;
     //cout << endl;
     tree.traverseInOrder(tree.root);
     cout << endl;
 
-    tree.findElement(tree.root,50) ? cout << "Found!!" << endl : cout << "Not Found!!" << endl ;
-    cout << tree.getHeight(tree.root) << endl;
-    cout << tree.countLeaf(tree.root) << endl;
-    tree.returnKeysBet(tree.root,20,70);
+    // tree.findElement(tree.root,50) ? cout << "Found!!" << endl : cout << "Not Found!!" << endl ;
+    // cout << tree.getHeight(tree.root) << endl;
+    // cout << tree.countLeaf(tree.root) << endl;
+    // tree.returnKeysBet(tree.root,20,70);
 
     return 0;
 }
