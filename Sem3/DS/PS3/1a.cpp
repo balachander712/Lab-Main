@@ -1,7 +1,4 @@
-#include <iostream>
-#include <unordered_map>
-#include<list>
-#include <string>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -41,7 +38,45 @@ void Graph::shortestPath(string src){
     //Dijikstra algorithm
 
     unordered_map<string,int> dist;
-     
+
+    for(auto j : L){
+        dist[j.first] = INT32_MAX;
+    }
+
+    set<pair<int,string>> s;
+
+    dist[src] = 0;
+    s.insert(make_pair(0,src));
+
+    while(!s.empty()){
+
+        auto p = *(s.begin());
+        string node = p.second;
+        int nodeDist = p.first;
+        s.erase(s.begin());
+
+        for(auto childPair : L[node]){
+            if(nodeDist + childPair.second < dist[childPair.first]){
+                string dest = childPair.first;
+                auto f = s.find(make_pair(dist[dest],dest));
+                if(f != s.end()){
+                    s.erase(f);
+                }
+
+                dist[dest] = nodeDist + childPair.second;
+                s.insert(make_pair(dist[dest],dest));
+
+
+            }
+        }
+
+    }
+
+    for(auto d : dist){
+
+        cout << d.first << " is located at a distance of " << d.second << endl;
+    }
+
 }
 
 int main(){
@@ -51,9 +86,10 @@ int main(){
     G.addEdge("B","D",true,40);
     G.addEdge("A","C",true,10);
     G.addEdge("C","D",true,40);
-    G.addEdge("A","D",false,50);
+    G.addEdge("A","D",true,50);
     //G.addEdge("A","B",true,20);
-    G.printGraph(); 
+    G.shortestPath("A");
+    //G.printGraph(); 
 
     return 0;
 
