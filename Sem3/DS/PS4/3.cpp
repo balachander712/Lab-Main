@@ -33,9 +33,9 @@ void mergeSort(vector<int>& A){
     if( N > 1){
         auto start = A.begin();
         auto end = A.end();
-        auto mid = start + N/2;
+        auto mid = A.begin() + N/2;
         vector<int> B(start, mid);
-        vector<int> C(mid+1, end);
+        vector<int> C(mid, end);
         mergeSort(B);
         mergeSort(C);
         merge(B,C,A);
@@ -64,6 +64,8 @@ int main(){
         arr.push_back(value);
     }
 
+    mergeSort(arr);
+    print(arr);
     int sum = 0;
 
     for(int i = 0; i < N - K; i++){
