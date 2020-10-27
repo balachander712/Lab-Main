@@ -1,8 +1,7 @@
-#include <iostream>
-#include <vector>
+#include<bits/stdc++.h>
+#include<cmath>
+
 using namespace std;
-
-
 
 int partition(int arr[],int start, int end){
     
@@ -46,43 +45,29 @@ void print(int arr[],int size){
     cout << endl;
 }
 
-bool binarySearch(int arr[],int start,int end,int key){
+int main()
+{
+	int n,k,t;
+    cout << "Enter the total number of test cases " << endl;
+	cin >> t;
+	while(t--)
+	{
+        cout << "Enter the values of N and K " << endl;
+		cin >> n >> k;
 
-    if(end >= start){
-
-        int mid = start + (end - start)/2;
-
-        if(arr[mid] == key) return true;
-
-        if(arr[mid] > key) return binarySearch(arr,start,mid-1,key);
-
-        return binarySearch(arr,mid+1,end,key);
-
-    }
-
-    return false;
-}
-
-int main(){
-
-    int arr[] = {2,7,5,9,15};
-    int n = sizeof(arr)/sizeof(arr[0]);
-    quickSort(arr,0,n);
-    print(arr,n);
-    int X = 4;
-    X++;
-    while(true){
-
-        if(binarySearch(arr,0,n-1,X)){
-            X++;
-            continue;
-        }
-        else{
-            cout << X++;
-            break;
-        }
-
-    }
+		int arr[n];
+		for(int i=0;i<n;i++)
+		{
+			cin >> arr[i];
+		}
+		quickSort(arr,0,n-1);
+		double sum = 0.0;
+		sum = (arr[n-1]-arr[1]+arr[n-2]-arr[0])*2.0;
+        sum = sum + sqrt(2.0)*(arr[n-1]-arr[n-2]+arr[1]-arr[0]);
+        long long rounded=ceil(sum);
+        cout << "The minimum cost is " << endl;
+        cout << rounded * k << endl;
+	}
 
 
     return 0;
