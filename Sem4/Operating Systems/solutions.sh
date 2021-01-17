@@ -168,3 +168,81 @@ grep 'Length' tot.txt | less
 #4.n
 head -5 verylong.seq
 
+
+#Qn 5
+
+#5.1
+touch File1.txt mypersonaldetails.txt myfrienddetails.txt file2.txt file3.txt
+
+#5.2
+echo "Name : Balachander" > File1.txt
+echo "Age : 20" >> File1.txt
+echo "Course : Software Systems" >> File1.txt
+echo "College : PSG" >> File1.txt
+echo "City : Palakkad" >> File1.txt
+
+cat mypersonaldetails.txt
+
+#5.3
+cp File1.txt mypersonaldetails.txt
+
+#5.4
+echo "Name : Yasar" > file2.txt
+echo "Age : 20" >> file2.txt
+echo "Course : FSE" >> file2.txt
+echo "College: CUSAT" >> file2.txt
+echo "City : Kochi" >> file2.txt
+
+cp file2.txt myfrienddetails.txt
+
+#5.5
+cat mypersonaldetails.txt myfrienddetails.txt > details.txt
+
+#5.6
+date >> details.txt
+
+#5.7
+mkdir Dir1 Dir2 Dir3 Dir4
+
+#5.8
+mv /home/madman/OS/details.txt /home/madman/Dir1
+
+#5.9
+rm File1.txt
+
+#5.10
+cd ..
+cd Dir1
+
+#5.11
+pwd
+
+#5.12
+cd ~
+
+#5.13
+cp details.txt /home/madman/Dir2
+cp details.txt /home/madman/Dir3
+cp details.txt /home/madman/Dir4
+
+#5.14
+mkdir Dir5
+
+#5.15
+cd Dir5
+
+#5.16
+ls -a /home/madman/
+
+#5.17
+cp /home/madman/OS/mypersonaldetails.txt /home/madman/Dir2
+
+#5.18
+ls -a /home/madman/
+
+#5.19
+rm -rf /home/madman/Dir3
+
+
+
+
