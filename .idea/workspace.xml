@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4a8f9747-4326-4ec9-9e3d-271b6ffca89c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sem4/Networking/client-server/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Lab-Main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Lab-Main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sem4/Networking/file1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Sem4/Networking/Encryption/file1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sem4/Networking/file2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Sem4/Networking/Encryption/file2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sem4/Networking/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Sem4/Networking/Encryption/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sem4/Networking/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Sem4/Networking/Encryption/output.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sem4/Networking/phase-1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sem4/Networking/Encryption/phase-1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sem4/Networking/phase-2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sem4/Networking/Encryption/phase-2.py" afterDir="false" />
-    </list>
+    <list default="true" id="4a8f9747-4326-4ec9-9e3d-271b6ffca89c" name="Default Changelist" comment="added sockets" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,8 +51,16 @@
       <workItem from="1609785037967" duration="19000" />
       <workItem from="1609785070222" duration="622000" />
       <workItem from="1609850864697" duration="53000" />
-      <workItem from="1611467589326" duration="1679000" />
+      <workItem from="1611467589326" duration="1790000" />
     </task>
+    <task id="LOCAL-00001" summary="added sockets">
+      <created>1611469350739</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1611469350739</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -80,15 +77,9 @@
       </map>
     </option>
   </component>
-  <component name="WindowStateProjectService">
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1609850916133">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1609850916133" />
-    <state x="277" y="57" key="SettingsEditor" timestamp="1609785091965">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1609785091965" />
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added sockets" />
+    <option name="LAST_COMMIT_MESSAGE" value="added sockets" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
