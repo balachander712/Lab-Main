@@ -8,7 +8,7 @@ message = 'Hey there'
 
 try:
     print(f'sending{message}')
-    sent = sock.sendto(message,server_addr)
+    sent = sock.sendto(message.encode(),server_addr)
 
     print('waiting to receive..')
     data,server = sock.recvfrom(4096)
