@@ -82,16 +82,19 @@ line(x,z)
 
 %10
 
-x = -1:0.01:1;
+x = 10:0.01:22;
 y = 95000./((x).^2);
-
-plot(x, y)
+X = 10:2:22;
+Y = [950, 640, 460, 340, 250, 180, 140];
+plot(x, y);
+hold on;
+plot(X,Y,':or');
 xlabel('Distance (cm)');
 ylabel('Intensity (lux)');
 title('Light Intensity as a Function of Distance')
 axis([8 24 0 1200])
-text(600, 18, 'Comparision between theory and exeriment')
-legend('first_function')
+text(14,640, 'Comparision between theory and exeriment', 'EdgeColor', 'r')
+legend('Theory', 'Experiment')
 
 %11
 
@@ -108,10 +111,9 @@ plot(x, 1./x)
 
 %12
 
-y = @(x)(x+1)*(x-2)*(2*x-0.25) - exp(x)
-subplot(2,1,1);
-fplot(y,[0 3])
-
-subplot(2,1,2);
-fplot(y,[-3 6])
+fn = @(x) (((x+1)*(x-2)*(2*x - 0.25))-exp(x))
+figure(1)
+fplot(fn, [0,3])
+figure(2)
+fplot(fn, [-3,6]) 
 
