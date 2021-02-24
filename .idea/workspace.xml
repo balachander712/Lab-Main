@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4a8f9747-4326-4ec9-9e3d-271b6ffca89c" name="Default Changelist" comment="added sockets">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sem4/Networking/client-server/1/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sem4/Networking/client-server/1/client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sem4/Networking/client-server/1/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sem4/Networking/client-server/1/server.py" afterDir="false" />
-    </list>
+    <list default="true" id="4a8f9747-4326-4ec9-9e3d-271b6ffca89c" name="Default Changelist" comment="added sockets" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -182,6 +178,7 @@
       <workItem from="1612966780843" duration="3378000" />
       <workItem from="1613631036556" duration="2000" />
       <workItem from="1613829821009" duration="30000" />
+      <workItem from="1614011112115" duration="518000" />
     </task>
     <task id="LOCAL-00001" summary="added sockets">
       <created>1611469350739</created>

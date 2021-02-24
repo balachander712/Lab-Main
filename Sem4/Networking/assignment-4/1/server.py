@@ -22,4 +22,4 @@ while True:
         arp_cache = subprocess.check_output(['arp -a'],shell=True)
         client.send(arp_cache)
 
-    client.close()
+client.close()
