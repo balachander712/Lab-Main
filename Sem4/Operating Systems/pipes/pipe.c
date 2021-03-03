@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     dup2(pipefd2[0], 0);
     close(pipefd2[0]);
 
-    FILE *fptr = fopen("C:\Users\balac\Documents\Workspace\Lab-Main\Sem4\Operating Systems\pipes\files.txt", "r");
+    FILE *fptr = fopen("/home/balachander/Documents/Lab-Main/Sem4/Operating Systems/pipes/files.txt", "r");
     while ((c = fgetc(fptr)) != EOF)
       write(pipefd1[1], &c, 1);
     close(pipefd1[1]);
