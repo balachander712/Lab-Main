@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#QUESTION 1
+#QUESTION_1
 
 #1.a
 echo ~
