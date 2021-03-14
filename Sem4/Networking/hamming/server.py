@@ -26,9 +26,9 @@ while True:
     for j in range(1, r+1):
         sum = 0
         for j in range(1, r+1):
-            x = format(i,"b")
+            x = format(j,"b")
             if(j <= len(x) and x[0-j] == '1'):
-                sum += arr[i-1]
+                sum += arr[j-1]
 
         if(sum%2 == 0):
             ans_parity.append(0)
