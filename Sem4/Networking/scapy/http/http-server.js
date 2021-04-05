@@ -21,7 +21,7 @@ app.use(express.json())
 app.use('/',index)
 
 app.get('/home', (req,res) => {
-  res.send({'name':'pritam'})
+  res.send({'name':'balachander'})
 })
 
 
