@@ -8,6 +8,8 @@ route.get('/:id',(req,res) => {
     console.log(req.params.id)
     const file = req.params.id
 
+    console.log('Got request')
+
     if (fs.existsSync(path.join(__dirname,file))) {
         console.log('File here')
         return res.sendFile(path.join(__dirname,file))
@@ -18,6 +20,8 @@ route.get('/:id',(req,res) => {
 });
 
 route.post('/:id', (req,res) =>{
+
+    console.log('Got Post request')
 
     const file = req.params.id;
     const content = req.body.content;
