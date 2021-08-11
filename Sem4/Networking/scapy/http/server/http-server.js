@@ -20,9 +20,7 @@ server.listen(port, hostname, () => {
 app.use(express.json())
 app.use('/',index)
 
-app.get('/home', (req,res) => {
-  res.send({'name':'balachander'})
-})
+
 
 
 app.listen(port,() => console.log(`Listening on Port ${port}`));
