@@ -1,4 +1,4 @@
-package complexnumber;
+package mathdatatype;
 
 public class ComplexNumber {
     private int real;

@@ -1,6 +1,6 @@
-package complexmatrix;
+package mathoperations;
 
-import complexnumber.ComplexNumber;
+import mathdatatype.ComplexNumber;
 
 public class ComplexMatrix {
 
