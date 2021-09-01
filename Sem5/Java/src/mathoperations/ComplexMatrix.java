@@ -1,3 +1,7 @@
+package complexmatrix;
+
+import complexnumber.ComplexNumber;
+
 public class ComplexMatrix {
 
     public ComplexNumber[][] complexArray;
