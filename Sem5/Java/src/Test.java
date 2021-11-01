@@ -1,7 +1,10 @@
-public class Test {
+public class Test  {
 
     public static void main(String[] args) {
-        Object o1 = new Object();
-        o1.
+        String str = "Hello";
+        String str1 = new String("Hello");
+        System.out.println(str);
+        System.out.println(str1);
+
     }
 }
