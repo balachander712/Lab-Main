@@ -1,3 +1,4 @@
+package complex;
 import mathoperations.ComplexMatrix;
 import mathdatatype.ComplexNumber;
 
@@ -5,8 +6,6 @@ public class Main {
     public static void main(String[] args) {
         ComplexMatrix matrix1 = new ComplexMatrix(3,3);
         ComplexMatrix matrix2 = new ComplexMatrix(3,3);
-
-        //ComplexNumber num1 = new ComplexNumber();
 
         for(int i = 0; i < 3; i++){
             for(int j = 0; j < 3; j++){

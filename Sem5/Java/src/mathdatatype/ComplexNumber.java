@@ -1,3 +1,5 @@
+package mathdatatype;
+
 public class ComplexNumber {
     private int real;
     private int imag;
