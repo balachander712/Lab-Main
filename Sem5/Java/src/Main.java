@@ -6,6 +6,8 @@ public class Main {
         ComplexMatrix matrix1 = new ComplexMatrix(3,3);
         ComplexMatrix matrix2 = new ComplexMatrix(3,3);
 
+        //ComplexNumber num1 = new ComplexNumber();
+
         for(int i = 0; i < 3; i++){
             for(int j = 0; j < 3; j++){
                 matrix1.complexArray[i][j] = new ComplexNumber(i,j);
